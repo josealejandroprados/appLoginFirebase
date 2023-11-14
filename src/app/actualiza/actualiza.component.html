@@ -1,0 +1,36 @@
+<div class="container p-4">
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="text-primary">Nuevo usuario</h4>
+            <br>
+            <form #formIngresar="ngForm" (ngSubmit)="actualizar(formIngresar)">
+                
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" id="nombre" required ngModel [ngModel]="nombreActual">
+                </div>
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" name="apellido" class="form-control" id="apellido" required ngModel [ngModel]="apellidoActual">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" name="email" class="form-control" id="email" required ngModel [ngModel]="emailActual">
+                </div>
+                <div class="mb-3">
+                    <label for="edad" class="form-label">Edad</label>
+                    <input type="number" name="edad" class="form-control" id="edad" required ngModel [ngModel]="edadActual">
+                </div>
+                <br>
+
+                <div class="btn-group mb-3">
+                    <button type="submit" class="btn btn-outline-primary" [disabled]="!formIngresar.form.valid"><i class="bi bi-check-circle"></i> Actualizar</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="iraHome()"><i class="bi bi-x-circle"></i> Cancelar</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

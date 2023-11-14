@@ -1,0 +1,32 @@
+<div class="container py-4">
+
+    <div class="card w-50 mx-auto">
+        <div class="card-body">
+
+            <h4 class="text-primary">Login</h4>
+            <br>
+
+            <form #formIngresar="ngForm" (ngSubmit)="ingresar(formIngresar)">
+                
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" id="email" required ngModel>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" name="password" class="form-control" id="password" required ngModel>
+                </div>
+
+                <button type="submit" class="btn btn-primary" [disabled]="!formIngresar.form.valid">Login</button>
+                <br><br>
+                <button class="btn btn-outline-success" (click)="ingresoConGoogle()">Login With Google</button>
+
+                <br><br><br>
+                <p>¿No está registrado?</p>
+                <a href="/register">Regístrese aquí</a>
+            </form>
+
+        </div>
+    </div>
+
+</div>
