@@ -2,24 +2,24 @@
     <div class="card">
         <div class="card-body">
 
-            <h4 class="text-primary">Nuevo usuario</h4>
+            <h4 class="text-primary">Nuevo producto</h4>
             <br>
             <form #formIngresar="ngForm" (ngSubmit)="agregar(formIngresar)">
                 <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" name="nombre" class="form-control" id="nombre" required ngModel>
+                    <label for="title" class="form-label">Titulo</label>
+                    <input type="text" name="title" class="form-control" id="title" required ngModel>
                 </div>
                 <div class="mb-3">
-                    <label for="apellido" class="form-label">Apellido</label>
-                    <input type="text" name="apellido" class="form-control" id="apellido" required ngModel>
+                    <label for="description" class="form-label">Descripcion</label>
+                    <textarea name="description" id="description" class="form-control" required ngModel cols="30" rows="10"></textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" required ngModel>
+                    <label for="fileName" class="form-label">Nombre de Archivo</label>
+                    <input type="text" name="fileName" class="form-control" id="fileName" required ngModel>
                 </div>
                 <div class="mb-3">
-                    <label for="edad" class="form-label">Edad</label>
-                    <input type="number" name="edad" class="form-control" id="edad" required ngModel>
+                    <label for="price" class="form-label">Precio</label>
+                    <input type="number" name="price" class="form-control" id="price" required ngModel>
                 </div>
                 <br>
 

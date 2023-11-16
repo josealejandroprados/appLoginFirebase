@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   constructor(
     private user:UserService,
@@ -18,7 +18,12 @@ export class LoginComponent {
     private cookie:CookieService
   ){}
 
+  ngOnInit(): void {
+    
+  }
+
   ingresar(form:NgForm){
+
     if(form.valid){
       let email=form.value.email;
       let password=form.value.password;
@@ -32,11 +37,13 @@ export class LoginComponent {
       .catch(error => {
         console.log('Error: '+error);
         alert('¡Por favor verifica tu email y contraseña!');
+        window.location.reload();
       });
     }
   }
 
   ingresoConGoogle(){
+
     this.user.loginWithGoogle()
     .then(response => {
       // console.log(response);

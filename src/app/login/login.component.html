@@ -10,14 +10,14 @@
                 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" required ngModel>
+                    <input type="email" name="email" class="form-control" id="email" required="Campo Email Requerido" ngModel>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" name="password" class="form-control" id="password" required ngModel>
+                    <input type="password" name="password" class="form-control" id="password" required="Password requerido" ngModel>
                 </div>
 
-                <button type="submit" class="btn btn-primary" [disabled]="!formIngresar.form.valid">Login</button>
+                <button type="submit" class="btn btn-primary">Login</button>
                 <br><br>
                 <button class="btn btn-outline-success" (click)="ingresoConGoogle()">Login With Google</button>
 

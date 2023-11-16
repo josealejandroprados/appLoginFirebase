@@ -17,6 +17,9 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { DataService } from './data.service';
 import { IngresarComponent } from './ingresar/ingresar.component';
 import { ActualizaComponent } from './actualiza/actualiza.component';
+import { ProductosComponent } from './productos/productos.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ProductoComponent } from './producto/producto.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +30,16 @@ import { ActualizaComponent } from './actualiza/actualiza.component';
     AboutComponent,
     ContactoComponent,
     IngresarComponent,
-    ActualizaComponent
+    ActualizaComponent,
+    ProductosComponent,
+    ProductoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgxPaginationModule,
     provideFirebaseApp(() => initializeApp({"projectId":"applogin-ea989","appId":"1:129157234761:web:9b428cbef957580913ff98","storageBucket":"applogin-ea989.appspot.com","apiKey":"AIzaSyC8KS_ueoWn1i3wuzwlRNXyFNe8zMyjRSY","authDomain":"applogin-ea989.firebaseapp.com","messagingSenderId":"129157234761"})),
     provideAuth(() => getAuth())
   ],

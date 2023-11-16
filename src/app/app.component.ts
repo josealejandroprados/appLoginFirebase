@@ -8,14 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  textFooter='@2023 Sitio Web creado por el Ing. José Prados para fines de aprendizaje';
   
   constructor(
     private user:UserService,
     private router:Router,
   ){}
-
-  usuario = this.user.getUsuarioActual();
-  token:string='';
 
   logout(){
     this.user.logout()

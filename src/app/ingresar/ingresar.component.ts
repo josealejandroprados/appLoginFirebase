@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Usuario } from '../usuario.model';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Producto } from '../producto.model';
 
 @Component({
   selector: 'app-ingresar',
@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class IngresarComponent {
 
-  users:Usuario[] = [];
+  product:Producto[] = [];
 
   constructor(
     private data:DataService,
@@ -21,26 +21,22 @@ export class IngresarComponent {
   agregar(form:NgForm){
     if(form.valid){
 
-      let usuarioNuevo = new Usuario(form.value.nombre,form.value.apellido,form.value.email,form.value.edad);
+      let productoNuevo = new Producto(form.value.title,form.value.description,form.value.fileName,form.value.price);
 
-      this.data.obtenerUsuarios().subscribe(misUsuarios => {
-        if(misUsuarios==null){
+      this.data.obtenerProductos().subscribe(misProductos => {
+        if(misProductos==null){
           // console.log('No hay registros');
-          this.users=[];
-          // console.log(this.users);
+          this.product=[];
         }
         else{
-          this.users=Object.values(misUsuarios);
-          // console.log(this.users);
+          this.product=Object.values(misProductos);
         }
         
-        this.users.push(usuarioNuevo);
-        // console.log(this.users);
+        this.product.push(productoNuevo);
 
-        this.data.guardarUsuarios(this.users).subscribe({next(response){
-          console.log("el usuario se agrego correctamente: " + response)},
-          error(error){
-            console.log('Error:' + error)}
+        this.data.guardarProductos(this.product).subscribe({
+          next(response){ console.log("el producto se agrego correctamente: ") },
+          error(error){ console.log('Error:' + error) }
         });
 
       });

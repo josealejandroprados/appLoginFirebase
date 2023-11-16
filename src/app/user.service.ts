@@ -41,7 +41,7 @@ export class UserService {
   }
 
   borrarToken(){
-    this.cookie.set('access-token','');
+    this.cookie.set('token','');
   }
 
   loginWithGoogle(){
@@ -49,7 +49,7 @@ export class UserService {
   }
 
   tokenWithGoogle(token:any){
-    this.cookie.set('token',token);
+    this.cookie.set('access-token',token);
   }
 
 }

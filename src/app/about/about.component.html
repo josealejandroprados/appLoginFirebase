@@ -1,28 +1,28 @@
 <div class="container py-4">
 
-    <h4 class="text-primary">Lista de Usuarios</h4>
+    <h4 class="text-primary">Lista de Productos</h4>
     <div class="table-responsive">
         <table class="table table-bordered table-hover" id="miTabla">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Email</th>
-              <th>Edad</th>
+              <th>Titulo</th>
+              <th>Descripcion</th>
+              <th>Nombre de Archivo</th>
+              <th>Precio</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let us of users; let i=index" (click)="getID(i);" [ngClass]="{'table-active table-primary': i===indexSeleccionado}">
+            <tr *ngFor="let prod of product; let i=index" (click)="getID(i);" [ngClass]="{'table-active table-primary': i===indexSeleccionado}">
               <td>{{i}}</td>
-              <td>{{us.nombre}}</td>
-              <td>{{us.apellido}}</td>
-              <td>{{us.email}}</td>
-              <td>{{us.edad}}</td>
+              <td>{{prod.title}}</td>
+              <td>{{prod.description}}</td>
+              <td>{{prod.fileName}}</td>
+              <td>{{prod.price}}</td>
             </tr>
           </tbody>
         </table>
-        <span *ngIf="existenciaUsuarios">No hay usuarios registrados</span>
+        <span *ngIf="existenciaProductos">No hay productos registrados</span>
 
         <br><br>
         <hr>
@@ -37,5 +37,7 @@
             </a>
         </div>
     </div>
+
+    <div style="height: 200px;"></div>
 
 </div>

@@ -1,0 +1,40 @@
+<div class="container py-4">
+
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/productos">Productos</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">{{titleActual}}</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div style="height: 100px;"></div>
+
+    <div class="row">
+
+        <div class="col-4 text-center">
+            <img [src]="ruta()" alt="">
+        </div>
+        <div class="col-8">
+            <div class="mb-4">
+                <h4>{{titleActual}}</h4>
+            </div>
+            <div class="mb-4">
+                <p>{{descriptionActual}}</p>
+            </div>
+            <div>
+                <p>Precio: $ {{priceActual}}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="height: 200px;"></div>
+
+</div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../usuario.model';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Producto } from '../producto.model';
 
 @Component({
   selector: 'app-actualiza',
@@ -11,13 +11,13 @@ import { NgForm } from '@angular/forms';
 })
 export class ActualizaComponent implements OnInit{
 
-  users:Usuario[]=[];
+  produc:Producto[]=[];
   indice!:number;
 
-  nombreActual!:string;
-  apellidoActual!:string;
-  emailActual!:string;
-  edadActual!:number;
+  titleActual!:string;
+  descriptionActual!:string;
+  fileNameActual!:string;
+  priceActual!:number;
 
   constructor(
     private data:DataService,
@@ -30,21 +30,19 @@ export class ActualizaComponent implements OnInit{
     this.indice=this.activRout.snapshot.params['id'];
     // console.log(this.indice);
 
-    this.data.obtenerUsuarios().subscribe(misUsuarios => {
-      if(misUsuarios==null){
+    this.data.obtenerProductos().subscribe(misProductos => {
+      if(misProductos==null){
         // console.log('No hay registros');
-        this.users=[];
-        // console.log(this.users);
+        this.produc=[];
       }
       else{
-        this.users=Object.values(misUsuarios);
-        // console.log(this.users);
-        let user = this.users[this.indice];
+        this.produc=Object.values(misProductos);
+        let producto = this.produc[this.indice];
         // console.log(user);
-        this.nombreActual=user.nombre;
-        this.apellidoActual=user.apellido;
-        this.emailActual=user.email;
-        this.edadActual=user.edad;
+        this.titleActual=producto.title;
+        this.descriptionActual=producto.description;
+        this.fileNameActual=producto.fileName;
+        this.priceActual=producto.price;
       }
     });
     
@@ -52,10 +50,11 @@ export class ActualizaComponent implements OnInit{
 
   actualizar(form:NgForm){
     if(form.valid){
-      let usuarioNuevo = new Usuario(form.value.nombre,form.value.apellido,form.value.email,form.value.edad);
-      // console.log(usuarioNuevo);
-      this.data.modificarUsuario(this.indice,usuarioNuevo).subscribe({
-        next(response){ console.log('Usuario modificado con exito '+response)},
+
+      let productoNuevo = new Producto(form.value.title, form.value.description, form.value.fileName, form.value.price);
+      
+      this.data.modificarProducto(this.indice,productoNuevo).subscribe({
+        next(response){ console.log('Producto modificado con exito ')},
         error(error){ console.log('Error: '+error)}
       });
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../usuario.model';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
+import { Producto } from '../producto.model';
 
 @Component({
   selector: 'app-about',
@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class AboutComponent implements OnInit {
 
-  users:Usuario[]=[];
-  existenciaUsuarios!:boolean;
+  product:Producto[]=[];
+  existenciaProductos!:boolean;
   indexSeleccionado!:number;
 
   constructor(
@@ -21,19 +21,16 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(){
 
-    this.data.obtenerUsuarios().subscribe(misUsuarios => {
-      if(misUsuarios==null){
-        console.log('No hay registros');
-        this.users=[];
-        this.existenciaUsuarios=true;
-        // console.log(this.users);
+    this.data.obtenerProductos().subscribe(misProductos => {
+      if(misProductos==null){
+        console.log('No hay productos');
+        this.product=[];
+        this.existenciaProductos=true;
       }
       else{
-        this.users=Object.values(misUsuarios);
-        this.existenciaUsuarios=false;
-        // console.log(this.users);
+        this.product=Object.values(misProductos);
+        this.existenciaProductos=false;
       }
-      // console.log(misUsuarios);
     });
   }
 
@@ -60,42 +57,28 @@ export class AboutComponent implements OnInit {
   verificarEleccionBorrar(){
 
     if(this.indexSeleccionado==null){
-      // this.ruta='/';
-      // this.parametroRuta='';
-      alert('Por favor seleccione el elemento a eliminar');
-      // this.tituloModal='Eliminar Usuario';
-      // this.cuerpoModal='Por favor seleccione el usuario a eliminar';
+      alert('Por favor seleccione el producto a eliminar');
     }
     else{
-      var mensaje = confirm("¿Esta seguro que desea eliminar el usuario?");
+      var mensaje = confirm("¿Esta seguro que desea eliminar el producto?");
 
-      //Detectamos si el usuario acepto eliminar el usuario
+      //Detectamos si el usuario acepto eliminar el producto
       if (mensaje){
 
-        this.users.splice(this.indexSeleccionado,1);
+        this.product.splice(this.indexSeleccionado,1);
 
-        this.data.guardarUsuarios(this.users).subscribe({
-          next(response){ console.log('Usuarios guardados correctamente '+response)},
+        this.data.guardarProductos(this.product).subscribe({
+          next(response){ console.log('Producto eliminado correctamente ')},
           error(error){ console.log('Error ',+error)}
         });
 
-        setTimeout(() => {this.router.navigate(['/about'])},1000);
+        setTimeout(() => {
+          this.router.navigate(['/about']);
+          window.location.reload();
+        },1000);
       }
     }      
 
-  }
-
-  borrarUsuario(){
-    this.users.splice(this.indexSeleccionado,1);
-
-    this.data.guardarUsuarios(this.users).subscribe({
-      next(response){ console.log('Usuarios guardados correctamente '+response)},
-      error(error){ console.log('Error ',+error)}
-    });
-
-    setTimeout(()=>{
-      this.router.navigate(['/about']);
-    },1000);
   }
 
 }

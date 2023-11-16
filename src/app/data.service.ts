@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
-import { Usuario } from './usuario.model';
+import { Producto } from './producto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,28 +14,24 @@ export class DataService {
     private http:HttpClient,
     private user:UserService
   ){}
-  
-  obtenerUsuarios(){
-    const token = this.user.getToken();
-    console.log(token);
 
-    return this.http.get(`${this.url}/usuarios.json?auth=`+token);
+  //////////////////////////////////////////////////////////////////////////
+  //////////////////// PRODUCTOS  //////////////////////////////////////////
+
+  obtenerProductos(){
+    const token = this.user.getToken();
+    return this.http.get(`${this.url}/productos.json?auth=`+token);
   }
 
-  guardarUsuarios(usuarios:Usuario[]){
+  guardarProductos(productos:Producto[]){
     const token = this.user.getToken();
-    return this.http.put(`${this.url}/usuarios.json?auth=`+token,usuarios);
+    return this.http.put(`${this.url}/productos.json?auth=`+token,productos);
   }
 
-  eliminarUsuario(indice:number){
-    let URL = `${this.url}/usuarios/`+indice+'.json';
-    return this.http.delete(URL);
-  }
-
-  modificarUsuario(indice:number, usuario:Usuario){
+  modificarProducto(indice:number, producto:Producto){
     const token = this.user.getToken();
-    let URL = `${this.url}/usuarios/`+indice+'.json?auth='+token;
-    return this.http.put(URL,usuario);
+    let URL = `${this.url}/productos/`+indice+'.json?auth='+token;
+    return this.http.put(URL,producto);
   }
 
 }
